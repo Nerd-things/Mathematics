@@ -1,0 +1,292 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 							SETTINGS 							%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{article}
+
+\usepackage{
+	amsmath,
+	amssymb,
+	geometry
+}
+
+\geometry{margin=1in}
+
+\author{Álvaro Fernández Barrero and Vicente Gabriel Piñar Ojeda}
+\title{Multi-variable calculus}
+\date{16-09-2026}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 							DOCUMENT 							%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+	\maketitle
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% 							MULTI-VARIABLE FUNCTIONS 							%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	% Author: Álvaro Fernández Barrero
+	% Date: 16-09-2026
+	\section{Multi-variable function}
+	
+	We have been integrating and differentiating over maps with a single variable, but nothing in their definition prevents them from having more than one. Therefore, we can define a map $\phi : \mathbb{F}^n \to \mathbb{F}^m$, being $n, m \in \mathbb{N}$. In multi-variable calculus, just like single-variable calculus, we ignore the possibility of having a complex number as either a income or outcome to simplify the math and because there is a whole branch in mathematics that already studies how they behave as they have some interesting and unique rules. Thus, we just work with maps in the form $f : \mathbb{R}^n \to \mathbb{R}^m$.
+	
+	As you might have noticed already, this notation is revealing that when a function requires up to one variable or even give several results, what is actually using are $n$-dimensional vectors.
+	
+	%
+	%
+	\section{Limits in several variables}
+	
+	%
+	%
+	\section{Continuity in several variables}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% 							PARTIAL DERIVATIVES 							%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	% Author: Álvaro Fernández Barrero
+	% Date: 16-09-2026
+	\section{Partial derivatives}
+	
+	When it comes to multi-variable functions, differentiating them is not as trivial as single-variable maps since we have now several directions to go through. Thus, something we can do is picking one variable and analyze the function in that direction.
+	
+	Mathematically, we can adjust the derivative's definition to satisfy the conditions I just said, popping up the partial derivatives.
+	
+	Let $f : \mathbb{R}^n \to \mathbb{R}$ be a continuous function:
+	
+	\[
+		\frac{\partial f}{\partial x_\mu}
+		:= \lim_{h \to 0} \frac{f(x_1, x_2, \cdots, x_\mu + h, \cdots, x_n) - f(x_1, x_2, \cdots, x_\mu, \cdots, x_n)}{h}
+	\]
+	
+	Another way to write this is by expressing the arguments as a vector:
+	
+	\[
+		\frac{\partial f}{\partial x_\mu}
+		= \lim_{h \to 0} \frac{f(\vec{v} + h\hat{v}_\mu) - f(\vec{v})}{h}
+	\]
+	
+	Where $\hat{v}_\mu \in \mathbb{R}^n$ is an unit vector pointing to the variable's direction. We can define it like $\hat{v}_{\mu_\nu} = \delta_{\mu\nu}$, where $\delta_{\mu\nu}$ is the Kronecker's delta.
+	
+	At this point, maybe you are wondering how to differentiate it and the truth is that the method does not change whatsoever: as we are only moving in one variable's direction, that is the one taken as variable and the rest become constants at sight of the derivative.
+	
+	For this kind of derivative, we can bump into a few notations such as:
+	
+	\[
+		f_{x_\mu}
+		= \partial_{x_\mu} f
+		= \frac{\partial}{\partial x_\mu} f
+		= \frac{\partial f}{\partial x_\mu}
+	\]
+	
+	% Author: Álvaro Fernández Barrero
+	% Date: 16-09-2026
+	\subsection{The n-th partial derivative}
+	
+	In the same way we can take the $n$-th derivative of a function if neither the derivability nor the continuity breaks, we can do the same with partial derivatives but as there are more variables, the notation must change.
+	
+	Let us go for the simplest case: the $n$-th derivative with respect to the same variable all of the times.
+	
+	\[
+		f_{x_\mu x_\mu x_\mu \cdots x_\mu}
+		= \partial_{x_\mu x_\mu x_\mu \cdots x_\mu} f
+		= \frac{\partial^n}{\partial x_\mu^n} f
+		= \frac{\partial^n f}{\partial x_\mu^n}
+	\]
+	
+	The notation is exactly the same as the $n$-th derivative's notation for single-variable functions but adding the new notation the partial derivatives introduces.
+	
+	In case we are differentiating with respect to different variables, the notation might be a little more tedious since we need to specify every single one.
+	
+	\[
+		f_{x_{\mu_1} x_{\mu_2} x_{\mu_3} \cdots x_{\mu_n}}
+		= \partial_{x_{\mu_1} x_{\mu_2} x_{\mu_3} \cdots x_{\mu_n}} f
+		= \frac{\partial^n}{\partial x_{\mu_1} \partial x_{\mu_2} \partial x_{\mu_3} \cdots \partial x_{\mu_n}} f
+		= \frac{\partial^n f}{\partial x_{\mu_1} \partial x_{\mu_2} \partial x_{\mu_3} \cdots \partial x_{\mu_n}}
+	\]
+	
+	% Author: Álvaro Fernández Barrero
+	% Date: 16-09-2026
+	\subsection{Mean value theorem}
+	
+	In the same way we have modified the derivative's definition to fit better with the multi-variable analysis requisites, we can use the same philosophy for the Lagrange's mean value theorem: we will just use one variable and work with it. Thus, let $f : \mathbb{R}^n \to \mathbb{R}$ be a continuous function in $[a, b]$ and differentiable in $(a, b)$ through the $\mu$-th variable, $\exists c \in (a, b):$
+	
+	\[
+		\frac{f(x_1, x_2, \cdots, x_{\mu - 1}, a, x_{\mu + 1}, \cdots, x_n) - f(x_1, x_2, \cdots, x_{\mu - 1}, b, x_{\mu + 1}, \cdots, x_n)}{a - b}
+		= \frac{\partial f}{\partial x_\mu}(c)
+	\]
+	
+	%
+	%
+	\subsection{Schwarz's theorem: Symmetry of the second derivative}
+	
+	Let $f : \mathbb{R}^n \to \mathbb{R}$ be continuous twice with respect to the variables $x_\mu$ and $x_\nu$. We can arbitrarily write:
+	
+	\[
+		\begin{aligned}
+			& f(x_1, \cdots, x_\mu, \cdots, x_\nu, \cdots, x_n) - f(x_1, \cdots, 0, \cdots, x_\nu, \cdots, x_n)
+			\\
+			& - f(x_1, \cdots, x_\mu, \cdots, 0, \cdots, x_n) + f(x_1, \cdots, 0, \cdots, 0, \cdots, x_n)
+		\end{aligned}
+	\]
+	
+	It looks messy, and it is, but we are just taking the function normally, subtracting it with the function with $x_\mu$ evaluated in 0, we repeat it but this time with the variable $x_\nu$ evaluated in 0, and finally add the function with both of these variables evaluated in 0.
+	
+	Here, we will name a variable $u : \mathbb{R}^2 \to \mathbb{R}$ as :
+	
+	\[
+		u(x_\mu, x_\nu) = f(x_1, \cdots, x_\mu, \cdots, x_\nu, \cdots, x_n) - f(x_1, \cdots, 0, \cdots, x_\nu, \cdots, x_n)
+	\]
+	
+	Thus, replacing in the previous formula, we get:
+	
+	\[
+		\begin{aligned}
+			& f(x_1, \cdots, x_\mu, \cdots, x_\nu, \cdots, x_n) - f(x_1, \cdots, 0, \cdots, x_\nu, \cdots, x_n)
+			\\
+			& - f(x_1, \cdots, x_\mu, \cdots, 0, \cdots, x_n) + f(x_1, \cdots, 0, \cdots, 0, \cdots, x_n)
+			\\
+			& = u(x_\mu, x_\nu) - u(x_\mu, 0)
+		\end{aligned}
+	\]
+	
+	Here it is obvious we can apply the mean value theorem since we have a subtraction of two functions with a difference in a variable. Therefore, by applying it:
+	
+	\[
+		u(x_\mu, x_\nu) - u(x_\mu, 0)
+		= (x_\nu - 0) \frac{\partial u}{\partial x_\nu}(\xi_1)
+		= x_\nu \frac{\partial u}{\partial x_\nu}(x_\mu, \xi_1)
+	\]
+	
+	We know what $u$ is, we just defined it. Now, we will undo that change and rewrite the result in terms of $f$:
+	
+	\[
+		x_\nu \frac{\partial u}{\partial x_\nu}(x_\mu, \xi_1)
+		= x_\nu \left( \frac{\partial f}{\partial x_\nu}(x_1, \cdots, x_\mu, \cdots, \xi_1, \cdots, x_n) - \frac{\partial f}{\partial x_\nu}(x_1, \cdots, 0, \cdots, \xi_1, \cdots, x_n) \right)
+	\]
+	
+	We have obtained anew a difference of two functions with a change in one of its variables, therefore we can use again the mean value theorem.
+	
+	\[
+		\begin{aligned}
+			& x_\nu \left( \frac{\partial f}{\partial x_\nu}(x_1, \cdots, x_\mu, \cdots, \xi_1, \cdots, x_n) - \frac{\partial f}{\partial x_\nu}(x_1, \cdots, 0, \cdots, \xi_1, \cdots, x_n) \right)
+			\\
+			& = x_\nu x_\mu \frac{\partial^2 f}{\partial x_\mu \partial x_\nu}(x_1, \cdots, \xi_2, \cdots, \xi_1, \cdots, x_n)
+		\end{aligned}
+	\]
+	
+	After this whole work, we finally reached a pretty nice formula, and now, we need to do the same again. By applying commutativity to the very first formula, we can state that:
+	
+	\[
+		\begin{aligned}
+			& f(x_1, \cdots, x_\mu, \cdots, x_\nu, \cdots, x_n) - f(x_1, \cdots, 0, \cdots, x_\nu, \cdots, x_n) 
+			\\
+			& - f(x_1, \cdots, x_\mu, \cdots, 0, \cdots, x_n) + f(x_1, \cdots, 0, \cdots, 0, \cdots, x_n)
+			\\
+			& = f(x_1, \cdots, x_\mu, \cdots, x_\nu, \cdots, x_n) - f(x_1, \cdots, x_\mu, \cdots, 0, \cdots, x_n)
+			\\
+			& - f(x_1, \cdots, 0, \cdots, x_\nu, \cdots, x_n) + f(x_1, \cdots, 0, \cdots, 0, \cdots, x_n)
+		\end{aligned}
+	\]
+	
+	Therefore, we can name another function $v$ such as:
+	
+	\[
+		v(x_\mu, x_\nu) = f(x_1, \cdots, x_\mu, \cdots, x_\nu, \cdots, x_n) - f(x_1, \cdots, x_\mu, \cdots, 0, \cdots, x_n)
+	\]
+	
+	And, just how we just have done, rewrite the previous formula in terms of $v$:
+	
+	\[
+		\begin{aligned}
+			& f(x_1, \cdots, x_\mu, \cdots, x_\nu, \cdots, x_n) - f(x_1, \cdots, x_\mu, \cdots, 0, \cdots, x_n)
+			\\
+			& - f(x_1, \cdots, 0, \cdots, x_\nu, \cdots, x_n) + f(x_1, \cdots, 0, \cdots, 0, \cdots, x_n)
+			\\
+			& = v(x_\mu, x_\nu) - v(0, x_\nu)
+		\end{aligned}
+	\]
+	
+	If you check this result, it is exactly the same as the result the $u$ function gave me but the variable that before we set to 0 is now its value and the other is now 0. Again, we repeat the process using by the same logic the mean value theorem.
+	
+	\[
+		v(x_\mu, x_\nu) - v(0, x_\nu) = x_\mu \frac{\partial v}{\partial x_\mu}(\zeta_1, x_\nu)
+	\]
+	
+	We rewrite it in terms for $f$:
+	
+	\[
+		x_\mu \frac{\partial v}{\partial x_\mu}(\zeta_1, x_\nu)
+		= x_\mu \left( \frac{\partial f}{\partial x_\mu}(x_1, \cdots, \zeta_1,\cdots, x_\nu, \cdots, x_n) - \frac{\partial f}{\partial x_\mu}(x_1, \cdots, \zeta_1, \cdots, 0, \cdots, x_n) \right)
+	\]
+	
+	And finally, we apply again the mean value theorem.
+	
+	\[
+		\begin{aligned}
+			& x_\mu \left( \frac{\partial f}{\partial x_\mu}(x_1, \cdots, \zeta_1,\cdots, x_\nu, \cdots, x_n) - \frac{\partial f}{\partial x_\mu}(x_1, \cdots, \zeta_1, \cdots, 0, \cdots, x_n) \right)
+			\\
+			& = x_\mu x_\nu \frac{\partial^2 f}{\partial x_\nu \partial x_\mu} (x_1, \cdots, \zeta_1, \cdots, \zeta_2, \cdots, x_n)
+		\end{aligned}
+	\]
+	
+	Now, since we first stated that the two starting points to derive the last two formulas are the same, we can write that both results are the same:
+	
+	\[
+		x_\nu x_\mu \frac{\partial^2 f}{\partial x_\mu \partial x_\nu}(x_1, \cdots, \xi_2, \cdots, \xi_1, \cdots, x_n)
+		= x_\mu x_\nu \frac{\partial^2 f}{\partial x_\nu \partial x_\mu} (x_1, \cdots, \zeta_1, \cdots, \zeta_2, \cdots, x_n)
+	\]
+	
+	By dividing both sides by $x_\mu x_\nu$:
+	
+	\[
+		\frac{\partial^2 f}{\partial x_\mu \partial x_\nu}(x_1, \cdots, \xi_2, \cdots, \xi_1, \cdots, x_n)
+		= \frac{\partial^2 f}{\partial x_\nu \partial x_\mu} (x_1, \cdots, \zeta_1, \cdots, \zeta_2, \cdots, x_n)
+	\]
+	
+	Finally, we just derived that if the function behaves and it is continuous in the first and second derivative with respect to these two random variables, it actually does not matter the order of differentiation
+	
+	\[
+		\frac{\partial^2 f}{\partial x_\mu \partial x_\nu} = \frac{\partial^2 f}{\partial x_\nu \partial x_\mu}
+	\]
+	
+	%
+	%
+	\section{Leibniz's rule: Differentiation under the integral sign}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% 							DIRECTIONAL DERIVATIVES 							%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	%
+	%
+	\section{Directional derivative}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% 							GRADIENT 							%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	%
+	%
+	\section{The $\nabla$ operator}
+	
+	%
+	%
+	\section{Directional derivative}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% 							MULTIPLE INTEGRALS 							%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	%
+	%
+	\section{Multiple integrals}
+	
+	%
+	%
+	\subsection{Fubini's theorem}
+	
+\end{document}
