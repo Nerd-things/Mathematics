@@ -253,9 +253,175 @@
 		\frac{\partial^2 f}{\partial x_\mu \partial x_\nu} = \frac{\partial^2 f}{\partial x_\nu \partial x_\mu}
 	\]
 	
-	%
-	%
+	% Author Álvaro Fernández Barrero
+	% Date: 17-09-2026
 	\section{Leibniz's rule: Differentiation under the integral sign}
+	
+	Let $f : \mathbb{R}^n \to \mathbb{R}$ be a continuous function in the interval $[a, b]$, where $a$ and $b$ are two continuous functions $a : \mathbb{R}^m \to \mathbb{R}$, $b : \mathbb{R}^p \to \mathbb{R}$:
+	
+	\[
+		\frac{d}{dt} \int_{a(a_1, \cdots, t, \cdots, a_m)}^{b(b_1, \cdots, t, \cdots, b_p)} f(x_1, \cdots, t, \cdots, x_\nu, \cdots, x_n) dx_\nu
+	\]
+	
+	This is the most general way of writing the integral. We will solve this derivative by using the derivative's definition.
+	
+	\[
+		\begin{aligned}
+			& \frac{d}{dt} \int_{a(a_1, \cdots, t, \cdots, a_m)}^{b(b_1, \cdots, t, \cdots, b_p)} f(x_1, \cdots, t, \cdots, x_\nu, \cdots, x_n) dx_\nu
+			\\
+			& = \lim_{\Delta t \to 0} \frac{1}{\Delta t} \left( \int_{a(a_1, \cdots, t + \Delta t, \cdots, a_m)}^{b(b_1, \cdots, t + \Delta t, \cdots, b_p)} f(x_1, \cdots, t + \Delta t, \cdots, x_\nu, \cdots, x_n) dx_\nu \right.
+			\\
+			& \left. \hspace{5em} - \int_{a(a_1, \cdots, t, \cdots, a_m)}^{b(b_1, \cdots, t, \cdots, b_p)} f(x_1, \cdots, t, \cdots, x_\nu, \cdots, x_n) dx_\nu \right)
+		\end{aligned}
+	\]
+	
+	First, we will rename a little the terms to simplify the notation and be able to comprehend what is afoot in every step without getting lost by it.
+	
+	We will say that:
+
+	\begin{itemize}
+		\item $a = a(a_1, \cdots, t, \cdots, a_m)$
+		\item $b = b(b_1, \cdots, t, \cdots, b_p)$
+		\item $\Delta a = a(a_1, \cdots, t + \Delta t, \cdots, a_m) - a(a_1, \cdots, t, \cdots, a_m)$
+		\item $\Delta b = b(b_1, \cdots, t + \Delta t, \cdots, b_p) - b(b_1, \cdots, t, \cdots, b_p)$
+		\item $u(t, x_\nu) =  f(x_1, \cdots, t, \cdots, x_\nu, \cdots, x_n)$
+	\end{itemize}
+	
+	Thus:
+	
+	\[
+		\begin{aligned}
+			& \lim_{\Delta t \to 0} \frac{1}{\Delta t} \left( \int_{a(a_1, \cdots, t + \Delta t, \cdots, a_m)}^{b(b_1, \cdots, t + \Delta t, \cdots, b_p)} f(x_1, \cdots, t + \Delta t, \cdots, x_\nu, \cdots, x_n) dx_\nu \right.
+			\\
+			& \left. - \int_{a(a_1, \cdots, t, \cdots, a_m)}^{b(b_1, \cdots, t, \cdots, b_p)} f(x_1, \cdots, t, \cdots, x_\nu, \cdots, x_n) dx_\nu \right)
+			\\
+			& = \lim_{\Delta t \to 0} \frac{1}{\Delta t} \left( \int_{a + \Delta a}^{b + \Delta b} u(t + \Delta t, x_\nu) dx_\nu - \int_a^b u(t, x_\nu) dx_\nu \right) 
+		\end{aligned}
+	\]
+	
+	If we analyze the first integral, we can state that:
+	
+	\[
+		\begin{aligned}
+			& \int_{a + \Delta a}^{b + \Delta b} u(t + \Delta t, x_\nu) dx_\nu
+			\\
+			& = \int_a^b u(t + \Delta t, x_\nu) dx_\nu - \int_a^{a + \Delta a} u(t + \Delta t, x_\nu) dx_\nu + \int_b^{b + \Delta b} u(t + \Delta t, x_\nu) dx_\nu
+		\end{aligned}
+	\]
+	
+	Therefore, we can write it on the formula to get the following result:
+	
+	\[
+		\begin{aligned}
+			& \lim_{\Delta t \to 0} \frac{1}{\Delta t} \left( \int_{a + \Delta a}^{b + \Delta b} u(t + \Delta t, x_\nu) dx_\nu - \int_a^b u(t, x_\nu) dx_\nu \right)
+			\\
+			& = \lim_{\Delta t \to 0} \frac{1}{\Delta t} \left( \int_a^b u(t + \Delta t, x_\nu) dx_\nu - \int_a^{a + \Delta a} u(t + \Delta t, x_\nu) dx_\nu + \int_b^{b + \Delta b} u(t + \Delta t, x_\nu) dx_\nu \right.
+			\\
+			& \left. \hspace{6em} - \int_a^b u(t, x_\nu) dx_\nu \right)
+		\end{aligned}
+	\]
+	
+	As the integral is a linear operator, we can use its properties to gather together the two remaining integrals with the same limits as:
+	
+	\[
+		= \lim_{\Delta t \to 0} \frac{1}{\Delta t} \left( \int_a^b [ u(t + \Delta t, x_\nu) - u(t, x_\nu) ] dx_\nu - \int_a^{a + \Delta a} u(t + \Delta t, x_\nu) dx_\nu + \int_b^{b + \Delta b} u(t + \Delta t, x_\nu) dx_\nu \right)
+	\]
+	
+	For the very first integral, we can change the function $u$ by its definition, getting back the original function $f$ and distribute the $1/\Delta t$ term:
+	
+	\[
+		\begin{aligned}
+			& = \lim_{\Delta t \to 0} \left( \int_a^b \frac{f(x_1, \cdots, t + \Delta t, \cdots,  x_\nu, 	\cdots, x_n) - f(x_1, \cdots, t, \cdots,  x_\nu, \cdots, x_n)}{\Delta t} dx_\nu \right.
+			\\
+			& \left. \hspace{5em} + \frac{1}{\Delta t} \left[ - \int_a^{a + \Delta a} u(t + \Delta t, x_\nu) dx_\nu + \int_b^{b + \Delta b} u(t + \Delta t, x_\nu) dx_\nu \right] \right)
+		\end{aligned}
+	\]
+	
+	As we see, we have the partial derivative's definition of $f$ with respect to $t$.
+	
+	\[
+		= \lim_{\Delta t \to 0} \left( \int_a^b \frac{\partial f}{\partial t} dx_\nu + \frac{1}{\Delta t} \left[ - \int_a^{a + \Delta a} u(t + \Delta t, x_\nu) dx_\nu + \int_b^{b + \Delta b} u(t + \Delta t, x_\nu) dx_\nu \right] \right)
+	\]
+	
+	For the rest of the terms, we need to use the mean value theorem. Let us take the third integral and say that $U$ is a primitive of $u$.
+	
+	\[
+		\int_b^{b + \Delta b} u(t + \Delta t, x_\nu) dx_\nu
+		= (b + \Delta b - b) \frac{\partial U}{\partial x_\nu}(t + \Delta t, \zeta)
+		= \Delta b \; u(t + \Delta t, \zeta)
+	\]
+	
+	We can use the same logic for the second integral:
+	
+	\[
+		-\int_a^{a + \Delta a} u(t + \Delta t, x_\nu) dx_\nu
+		= -(a + \Delta a - a) \frac{\partial U}{\partial x_\nu}(t + \Delta t, \zeta)
+		= -\Delta a \; u(t + \Delta t, \xi)
+	\]
+	
+	Using these results on the formula:
+	
+	\[
+		\begin{aligned}
+			& \lim_{\Delta t \to 0} \left( \int_a^b \frac{\partial f}{\partial t} dx_\nu + \frac{1}{\Delta t} \left[ - \int_a^{a + \Delta a} u(t + \Delta t, x_\nu) dx_\nu + \int_b^{b + \Delta b} u(t + \Delta t, x_\nu) dx_\nu \right] \right)
+			\\
+			& = \lim_{\Delta t \to 0} \left( \int_a^b \frac{\partial f}{\partial t} dx_\nu + \frac{1}{\Delta t} \left[ - \Delta a \; u(t + \Delta t, \xi) + \Delta b \; u(t + \Delta t, \zeta) \right] \right)
+		\end{aligned}
+	\]
+	
+	Here, as $\Delta t$ tends to 0, $t + \Delta t$ is clear that tends to $t$, but since $\xi$ and $\zeta$ are defined by the mean value theorem, $\xi$ tends to $a$ and $\zeta$ to $b$.
+	
+	\[
+		= \lim_{\Delta t \to 0} \left( \int_a^b \frac{\partial f}{\partial t} dx_\nu + \frac{1}{\Delta t} \left[ - \Delta a \; u(t, a) + \Delta b \; u(t, b) \right] \right)
+	\]
+	
+	After applying those changes, we can write the $u$ in terms of $f$ to get the original function back everywhere and distribute $1/\Delta t$.
+	
+	\[
+		= \lim_{\Delta t \to 0} \left( \int_a^b \frac{\partial f}{\partial t} dx_\nu - \frac{\Delta a}{\Delta t} f(x_1, \cdots, t, \cdots, a, \cdots, x_n) + \frac{\Delta b}{\Delta t} \; f(x_1, \cdots, t, \cdots, b, \cdots, x_n) \right)
+	\]
+	
+	As $\Delta t$ goes to zero, we can check what happens with the fractions we have left.
+	
+	\[
+		\lim_{\Delta t \to 0} \frac{\Delta a}{\Delta t}
+		= \lim_{\Delta t \to 0} \frac{a(a_1, \cdots, t + \Delta t, \cdots, a_n) - a(a_1, \cdots, t, \cdots, a_n)}{\Delta t} = \frac{\partial a}{\partial t}
+	\]
+	
+	\[
+		\lim_{\Delta t \to 0} \frac{\Delta b}{\Delta t}
+		= \lim_{\Delta t \to 0} \frac{b(b_1, \cdots, t + \Delta t, \cdots, b_n) - b(b_1, \cdots, t, \cdots, b_n)}{\Delta t} = \frac{\partial b}{\partial t}
+	\]
+	
+	Hence:
+	
+	\[
+		\begin{aligned}
+			& \lim_{\Delta t \to 0} \left( \int_a^b \frac{\partial f}{\partial t} dx_\nu - \frac{\Delta a}{\Delta t} f(x_1, \cdots, t, \cdots, a, \cdots, x_n) + \frac{\Delta b}{\Delta t} \; f(x_1, \cdots, t, \cdots, b, \cdots, x_n) \right)
+			\\
+			& = \int_a^b \frac{\partial f}{\partial t} dx_\nu - \frac{\partial a}{\partial t} f(x_1, \cdots, t, \cdots, a, \cdots, x_n) + \frac{\partial b}{\partial t} \; f(x_1, \cdots, t, \cdots, b, \cdots, x_n)
+		\end{aligned}
+	\]
+	
+	Therefore, we just have proven that:
+	
+	\[
+		\begin{aligned}
+			& \frac{d}{dt} \int_{a(a_1, \cdots, t, \cdots, a_m)}^{b(b_1, \cdots, t, \cdots, b_p)} f(x_1, \cdots, t, \cdots, x_\nu, \cdots, x_n) dx_\nu
+			\\
+			& = \int_a^b \frac{\partial f}{\partial t} dx_\nu - \frac{\partial a}{\partial t} f(x_1, \cdots, t, \cdots, a, \cdots, x_n) + \frac{\partial b}{\partial t} \; f(x_1, \cdots, t, \cdots, b, \cdots, x_n)
+		\end{aligned}
+	\]
+	
+	If it happens to the functions $a$ and $b$ to be a couple of single-variable maps with which variable is precisely the variable we are differentiating the integral, we can convert their partial derivatives to normal single-variable derivatives as:
+	
+	\[
+		\begin{aligned}
+			& = \int_a^b \frac{df}{dt} dx_\nu - \frac{da}{dt} f(x_1, \cdots, t, \cdots, a, \cdots, x_n) + \frac{\partial b}{\partial t} \; f(x_1, \cdots, t, \cdots, b, \cdots, x_n)
+			\\
+			& \iff a : \mathbb{R} \to \mathbb{R} \wedge b : \mathbb{R} \to \mathbb{R}
+		\end{aligned}
+	\]
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% 							DIRECTIONAL DERIVATIVES 							%
@@ -269,13 +435,51 @@
 	% 							GRADIENT 							%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	%
-	%
+	% Author: Álvaro Fernández Barrero
+	% Date: 17-09-2026
 	\section{The $\nabla$ operator}
+	
+	There is a vector which we are going to be using quite often in multi-variable calculus which receives the name of "nabla" and it is represented with an upside-down triangle $\nabla$ or with an arrow on top as a regular basic vector $\vec{\nabla}$ although in order to simplify the notation here we will be using exclusively the notation without the arrow.
+	
+	This vector is super special as it is defined with partial derivatives like:
+	
+	\[
+		\nabla :=
+		\begin{pmatrix}
+			\partial_{x_1}
+			\\
+			\partial_{x_2}
+			\\
+			\vdots
+			\\
+			\partial_{x_n}
+		\end{pmatrix}
+	\]
+	
+	Or, equivalently:
+	
+	\[
+		\nabla_\mu = \frac{\partial}{\partial x_\mu}
+	\]
+	
+	This is just notation, but we can do some really nice tricks as multiplying this vector with a function $f : \mathbb{R}^n \to \mathbb{R}$:
+	
+	\[
+		\nabla f =
+		\begin{pmatrix}
+			\partial_{x_1} f
+			\\
+			\partial_{x_2} f
+			\\
+			\vdots
+			\\
+			\partial_{x_n} f
+		\end{pmatrix}
+	\]
 	
 	%
 	%
-	\section{Directional derivative}
+	\section{Gradient}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% 							MULTIPLE INTEGRALS 							%
