@@ -417,10 +417,18 @@
 	
 	\[
 		\begin{aligned}
-			& = \int_a^b \frac{df}{dt} dx_\nu - \frac{da}{dt} f(x_1, \cdots, t, \cdots, a, \cdots, x_n) + \frac{\partial b}{\partial t} \; f(x_1, \cdots, t, \cdots, b, \cdots, x_n)
+			& = \int_a^b \frac{df}{dt} dx_\nu - \frac{da}{dt} f(x_1, \cdots, t, \cdots, a, \cdots, x_n) + \frac{db}{dt} \; f(x_1, \cdots, t, \cdots, b, \cdots, x_n)
 			\\
 			& \iff a : \mathbb{R} \to \mathbb{R} \wedge b : \mathbb{R} \to \mathbb{R}
 		\end{aligned}
+	\]
+	
+	Moreover, if it happens that $a$ and $b$ are just constants, since the derivative of a constants is always 0, some terms here vanishes leaving the result of:
+	
+	\[
+		\frac{d}{dt} \int_{a}^{b} f(x_1, \cdots, t, \cdots, x_\nu, \cdots, x_n) dx_\nu
+		= \int_{a}^{b} \frac{\partial f}{\partial t}(x_1, \cdots, t, \cdots, x_\nu, \cdots, x_n) dx_\nu,
+		\; a, b \in \mathbb{R}
 	\]
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
