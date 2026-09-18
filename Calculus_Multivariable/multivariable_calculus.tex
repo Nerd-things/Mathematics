@@ -417,7 +417,7 @@
 	
 	\[
 		\begin{aligned}
-			& = \int_a^b \frac{df}{dt} dx_\nu - \frac{da}{dt} f(x_1, \cdots, t, \cdots, a, \cdots, x_n) + \frac{db}{dt} \; f(x_1, \cdots, t, \cdots, b, \cdots, x_n)
+			& = \int_a^b \frac{\partial f}{\partial t} dx_\nu - \frac{da}{dt} f(x_1, \cdots, t, \cdots, a, \cdots, x_n) + \frac{db}{dt} \; f(x_1, \cdots, t, \cdots, b, \cdots, x_n)
 			\\
 			& \iff a : \mathbb{R} \to \mathbb{R} \wedge b : \mathbb{R} \to \mathbb{R}
 		\end{aligned}
@@ -435,9 +435,146 @@
 	% 							DIRECTIONAL DERIVATIVES 							%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	%
-	%
+	% Author: Álvaro Fernández Barrero
+	% Date: 18-09-2026
 	\section{Directional derivative}
+	
+	When we are differentiating a multi-variable function, we can just use partial derivatives to differentiate with respect to a specific variable. Another way to look at it is by comprehending that we are taking a direction in an axis and differentiating the function thru that way. Taking this thinking, there are many more paths to differentiate thru than just the canonical axes and there is when the directional derivative pops up.
+	
+	To commence, we need to know what path we want to take and for that we need to parameterize it. 
+	
+	Let $a, u \in \mathbb{R}^n$ and $f : \mathbb{R}^n \to \mathbb{R}$ be continuous. We define the directional derivative as:
+	
+	\[
+		D_u f := \lim_{t \to 0} \frac{f(a + tu) - f(a)}{t}
+	\]
+	
+	Here, the term $a + tu$ is a line parameterized in the $u$ direction taking $a$ as displacement. We will define a few more vectors as:
+	
+	\[
+		p_\mu =
+		\begin{pmatrix}
+			a_1 + t u_1
+			\\
+			a_2 + t u_2
+			\\
+			\vdots
+			\\
+			a_\mu + t u_\mu
+			\\
+			a_{\mu + 1}
+			\\
+			\vdots
+			\\
+			a_n
+		\end{pmatrix},
+		\; \mu \in \{ x \in \mathbb{N}, 1 \le x \le n \},
+	\]
+	
+	Here, we are defining a vector $p_\mu$ whose components $\le \mu$ are their respective component in the vector $a + tu$ but the rest of components are their respective in $a$. By that, we can establish that $p_0 = a \wedge p_n = a + tu$. Therefore, we will take the nominator of the limit and rewrite it in terms of $p_\mu$.
+	
+	\[
+		f(a + tu) - f(a) = f(p_n) - f(p_0)
+	\]
+	
+	This will allow us to telescope it and have a pretty neat serie:
+	
+	\[
+		f(a + tu) - f(a) = f(p_n) - f(p_0) = \sum_{\mu = 1}^n (f(p_\mu) - f(p_{\mu - 1}))
+	\]
+	
+	By dividing both sides by $t$:
+	
+	\[
+		\frac{f(a + tu) - f(a)}{t} = \sum_{\mu = 1}^n \frac{f(p_\mu) - f(p_{\mu - 1})}{t}
+	\]
+	
+	We have done it because we could make appear on the left-hand part the fraction from the definition we used for the directional derivative, obtaining a new way to express it.
+	
+	Now, we will define another set of functions $g_\mu : \mathbb{R} \to \mathbb{R}$ such that:
+	
+	\[
+		g_\mu(s) = f(a_1 + tu_1, a_2 + tu_2, \cdots, a_{\mu - 1} + tu_{\mu - 1}, s, a_{\mu + 1}, \cdots, a_n)
+	\]
+	
+	They are really similar to the vectors $p_\mu$, for all the previous components to the $\mu-th$ one, we are just placing their respective component from $a + tu$, in the $\mu-th$ component we are placing a different number $s \in \mathbb{R}$ and the rest are going to be their respective component in $a$.
+	
+	Hence, we can state that:
+	
+	\[
+		f(p_\mu) - f(p_{\mu - 1}) = g_\mu(a_\mu + t u_\mu) - g_{\mu}(a_\mu)
+	\]
+	
+	Now, we can use the mean value theorem to claim that $\exists \theta_\mu(t) \in (0, 1)$ such that:
+	
+	\[
+		g_\mu(a_\mu + t u_\mu) - g_{\mu}(a_\mu)
+		= (a_\mu + t u_\mu - a_\mu) \frac{dg_\mu}{ds}(a_\mu + \theta(t)tu_\mu)
+		= t u_\mu \frac{dg_\mu}{ds}(a_\mu + \theta(t)tu_\mu)
+	\]
+	
+	By rewriting $g'_\mu$ in terms of $f$ we see that:
+	
+	\[
+		\frac{dg_\mu}{ds}
+		= \frac{\partial f}{\partial x_\mu}(a_1 + tu_1, \cdots, a_{\mu - 1} + tu_{\mu - 1}, s, a_{\mu + 1}, \cdots, a_n)
+	\]
+	
+	Additionally, to simplify it, we can write another set of functions $q_\mu : \mathbb{R} \to \mathbb{R}^n$ such that:
+	
+	\[
+		q_\mu(t) =
+		\begin{pmatrix}
+			a_1 + t u_1
+			\\
+			\vdots
+			\\
+			a_{\mu - 1} + t u_{\mu - 1}
+			\\
+			a_\mu + \theta_\mu(t) t u_\mu
+			\\
+			a_{\mu + 1}
+			\\
+			\vdots
+			\\
+			a_n
+		\end{pmatrix}
+		\implies 	g_\mu(a_\mu + t u_\mu) - g_{\mu}(a_\mu) = tu_\mu \frac{\partial f}{\partial x_\mu}(q_\mu(t))
+	\]
+	
+	Therefore:
+	
+	\[
+		\begin{aligned}
+			& f(p_\mu) - f(p_{\mu - 1}) = g_\mu(a_\mu + t u_\mu) - g_{\mu}(a_\mu) = tu_\mu \frac{\partial f}{\partial x_\mu}(q_\mu(t))
+			\\
+			& \implies \frac{f(a + tu) - f(a)}{t} = \sum_{\mu = 1}^n  \frac{tu_\mu \partial_{x_\mu} f(q_\mu(t))}{t} = \sum_{\mu = 1}^n  u_\mu \frac{\partial f}{\partial x_\mu}(q_\mu(t))
+		\end{aligned}
+	\]
+	
+	Applying this result to the full directional derivative's definition:
+	
+	\[
+		D_u f = \lim_{t \to 0} \frac{f(a + tu) - f(a)}{t} = \lim_{t \to 0} \sum_{\mu = 1}^n  u_\mu \frac{\partial f}{\partial x_\mu}(q_\mu(t))
+	\]
+	
+	Here, the only term we have relying on t is $q_\mu$, but if we peek its definition we will see that when $t \to 0$, $q_\mu(t) \to a$.
+	
+	\[
+		= \sum_{\mu = 1}^n  u_\mu \frac{\partial f}{\partial x_\mu}(a)
+	\]
+	
+	We got the summation over components of a vector and partial derivatives, but we can use here the nabla operator to write it using the inner product.
+	
+	\[
+		= \langle \nabla f(a), u \rangle = \nabla f(a) \cdot u
+	\]
+	
+	That is why we can use also the notation $\nabla_u f$ to refer to the directional derivative.
+	
+	\[
+		D_u f(a) = \nabla_u f(a) = \langle \nabla f(a), u \rangle
+	\]
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% 							GRADIENT 							%
