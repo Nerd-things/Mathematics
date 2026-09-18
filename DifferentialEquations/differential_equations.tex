@@ -1,0 +1,172 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 							SETTINGS 							%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{article}
+
+\usepackage{
+	amsmath,
+	amssymb,
+	geometry
+}
+
+\geometry{margin=1in}
+
+\author{Álvaro Fernández Barrero and Vicente Gabriel Piñar Ojeda}
+\title{Differential equations}
+\date{18-09-2026}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 							DOCUMENT 							%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+	\maketitle
+	
+	%
+	%
+	\section{Differential equations classification}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% 							ODES							%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	%
+	%
+	\section{Ordinary differential equations (ODE)}
+	
+	%
+	%
+	\subsection{Separation of variables}
+	
+	% Author: Álvaro Fernández Barrero
+	% Date: 18-09-2026
+	\subsection{Homogeneous ODE 1st degree}
+	
+	An homogeneous ODE can be expressed like:
+	
+	\[
+		y' + M(x)y = 0
+	\]
+	
+	It is always useful to use Leibniz's notation for differential equations even though we might always see the statements written using either Newton or Lagrange's notation, thus the general way to write an homogeneous ODE turns into:
+	
+	\[
+		\frac{dy}{dx} + M(x)y = 0
+	\]
+	
+	This case is super simple, because we can separate variables here.
+	
+	\[
+		\frac{dy}{dx} = -M(x)y
+		\implies \frac{1}{y} \frac{dy}{dx} = -M(x)
+		\implies \frac{1}{y} dy = -M(x) dx
+	\]
+	
+	Now that we have all $y$ terms in one side and all $x$ terms in the other, we can integrate both side:
+	
+	\[
+		\int \frac{1}{y} dy = \int -M(x) dx
+		\implies \ln(y) + C = -\int M(x) dx
+	\]
+	
+	We are interested in the value $y$, not in its logarithm, hence we must subtract both sides by the integration constant and use the exponential function to cancel it.
+	
+	\[
+		y = \exp\left(-\int M(x) dx - C\right), \quad \exp(x) = e^x
+	\]
+	
+	We can use here the properties of the exponential function to simplify the whole expression.
+	
+	\[
+		y = \exp\left(-\int M(x) dx\right) e^{-C}
+	\]
+	
+	As $e$ and $-C$ are two constants and $C$ is absolutely arbitrary, we can rename it to just have an arbitrary value per se instead of a complex expression-
+	
+	\[
+		y = \lambda \exp\left(-\int M(x) dx\right), \quad \lambda \in \mathbb{R}
+	\]
+	
+	% Author: Álvaro Fernández Barrero
+	% Date: 18-09-2026
+	\subsection{Non-homogeneous ODE 1st degree}
+	
+	A non-homogeneous ODE of 1st degree looks like:
+	
+	\[
+		y' + M(x)y = N(x)
+	\]
+	
+	As always, we switch first to the Leibniz's notation.
+	
+	\[
+		\frac{dy}{dx} + M(x)y = N(x)
+	\]
+	
+	Before solving this ODE, let us compute the following formula:
+	
+	\[
+		\frac{d}{dx} \exp\left(\int M(x) dx\right) y
+	\]
+	
+	We have the derivative of the multiplication of two functions, so we will be using the formula for it here.
+	
+	\[
+		\frac{d}{dx} \exp\left(\int M(x) dx\right) y
+		= M(x) \exp\left( \int M(x) dx \right) y + \exp\left( \int M(x) dx \right) y'
+	\]
+	
+	We see that in the result we have in both terms the exponent result which means we can factor it out.
+	
+	\[
+		= \exp\left( \int M(x) dx \right) (M(x) y + y')
+		= \exp\left( \int M(x) dx \right) (y' + M(x) y)
+	\]
+	\[
+		\implies \frac{d}{dx} \exp\left(\int M(x) dx\right) y = \exp\left( \int M(x) dx \right) (y' + M(x) y)
+	\]
+	
+	We have done that because in the parenthesis on the left popped up the left-hand part of the original ODE.
+	
+	Let us go back and multiply both size by the exponential function of the integral.
+	
+	\[
+		\exp\left( \int M(x) dx \right) (y' + M(x) y) = \exp\left( \int M(x) dx \right) N(x)
+	\]
+	
+	On the left hand part we can substitute it by derivative we have just done.
+	
+	\[
+		\frac{d}{dx} \exp\left(\int M(x) dx\right) y
+		= \exp\left( \int M(x) dx \right) N(x)
+	\]
+	
+	We now multiply both side by $dx$ and take the integral of both parts.
+	
+	\[
+		d\left[ \exp\left(\int M(x) dx\right) y \right]
+		= \exp\left( \int M(x) dx \right) N(x) dx
+	\]
+	\[
+		\int d\left[ \exp\left(\int M(x) dx\right) y \right]
+		= \int \exp\left( \int M(x) dx \right) N(x) dx
+	\]
+	
+	On the right-hand part very little we can do, although on the other hand we have the integral of a differential on the right hand part, and the integral of the differential of $x$ is just $x$. Thus:
+	
+	\[
+		\exp\left(\int M(x) dx\right) y
+		= \int \exp\left( \int M(x) dx \right) N(x) dx
+	\]
+	
+	To obtain the value of $y$ we just now require to divide both side by the exponential function and we have it finally:
+	
+	\[
+		y = \frac{\int N(x) \exp\left( \int M(x) dx \right) dx}{\exp\left(\int M(x) dx\right)}
+	\]
+	
+	%
+	%
+	\subsection{Bernoulli's ODE}
+\end{document}
