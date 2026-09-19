@@ -622,9 +622,35 @@
 		\end{pmatrix}
 	\]
 	
-	%
-	%
+	% Author: Álvaro Fernández Barrero
+	% Date: 19-09-2026
 	\section{Gradient}
+	
+	Let us take a scalar field $f : \mathbb{R}^n \to \mathbb{R}$ and a constant $\lambda \in \mathbb{R}$. We parameterize the level curve of $f$ under the function $\vec{r} : \mathbb{R} \to \mathbb{R}^n$. Thus, we have the equation:
+	
+	\[
+		f(\vec{r}(t)) = \lambda
+	\]
+	
+	By differentiating both sides:
+	
+	\[
+		\frac{d}{dt} f(\vec{r}(t)) = \frac{d}{dt} \lambda
+	\]
+	
+	We see that in the left-hand part we have to use the chain rule and on the right-hand part we just have 0:
+	
+	\[
+		\sum_{\mu = 1}^n \frac{\partial f}{\partial x_\mu} \frac{dx_\mu}{dt} = 0
+	\]
+	
+	Here we have exactly the inner product:
+	
+	\[
+		\langle \nabla f, \vec{r}' \rangle = 0
+	\]
+	
+	Therefore, we just found out that the operation $\operatorname{grad}(f) = \nabla f$ is a vector perpendicular to the parameterized path of an arbitrary level curve of $f$, which means that the gradient is pointing at any point to either a relative maximum or a relative minimum. By the nature of derivatives, we know that they are positive when the next value is greater that then current one, which means we can claim that they are actually pointing to a relative maximum.
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% 							MULTIPLE INTEGRALS 							%
