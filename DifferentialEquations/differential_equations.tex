@@ -169,4 +169,69 @@
 	%
 	%
 	\subsection{Bernoulli's ODE}
+	
+	Bernoulli's ODE are non-linear ODE which have the following form:
+	
+	\[
+		y' + M(x)y = N(x)y^n, \quad n \in \mathbb{R} \setminus \{-1, 0\}
+	\]
+	
+	This ODE is non-linear because of the $y^n$ term, but if the equation satisfy that form, we can make a trick to turn this into linear and have a general formula for this.
+	
+	We start by multiplying both side by $y^{-n}$, distribute it and use the power's rules.
+	
+	\[
+		\begin{aligned}
+			y^{-n} (y' + M(x)y) = y^{-n} N(x) y^n
+			\\
+			\implies y^{-n} y' + y^{-n} M(x) y = y^{-n} N(x) y^n
+			\\
+			\implies y^{-n} y' + M(x) y^{-n + 1} = N(x) y^{-n + 1}
+			\\
+			\implies y^{-n} y' + M(x) y^{1 - n} = N(x) y^{1 - n}
+		\end{aligned}
+	\]
+	
+	Now we need to make a change of variable and define $z = y^{1 - n}$ and take its derivative:
+	
+	\[
+		\frac{dz}{dx} = (1 - n) y^{-n} y'
+		\implies \frac{1}{1 - n} \frac{dz}{dx} = y^{-n} y'
+	\]
+	
+	We see that the result of differentiating $z$ is also in the equation. We can rewrite the whole equation in terms of $z$ like:
+	
+	\[
+		\frac{1}{1 - n} \frac{dz}{dx} + M(x) z = N(x) z
+	\]
+	
+	We multiply both side by $1 - n$.
+	
+	\[
+		\frac{dz}{dx} + (1 - n) M(x) z = (1 - n) N(x) z
+	\]
+	
+	This result is a linear non-homogeneous ODE, allowing us to solve this equation using the general formula we have just derived in the previous chapters.
+	
+	\[
+		\begin{aligned}
+			& z = \frac{\int (1 - n) N(x) \exp\left(\int (1 - n)M(x) dx \right) dx}{\exp\left(\int (1 - n)M(x) dx\right)}
+			\\
+			& \hspace{0.7em} = \frac{(1 - n) \int N(x) \exp\left((1 - n) \int M(x) dx \right) dx}{\exp\left((1 - n) \int M(x) dx\right)}
+			\\
+			& \hspace{0.7em} = \frac{(1 - n) \int N(x) \exp(1 - n)  \exp\left(\int M(x) dx \right) dx}{\exp(1 - n)  \exp\left(\int M(x) dx \right)}
+			\\
+			& \hspace{0.7em} = \frac{(1 - n) \exp(1 - n) \int N(x) \exp\left(\int M(x) dx \right) dx}{\exp(1 - n)  \exp\left(\int M(x) dx \right)}
+			\\
+			& \hspace{0.7em} = \frac{(1 - n) \int N(x) \exp\left(\int M(x) dx \right) dx}{\exp\left(\int M(x) dx \right)}
+			\\
+			& \hspace{0.7em} = \frac{1}{\exp\left(\int M(x) dx \right)} (1 - n) \int N(x) \exp\left(\int M(x) dx \right) dx
+		\end{aligned}
+	\]
+	
+	We cannot forget we just got the value for $z$ but we are actually interested in knowing $y$. Hence, since $z = y^{1 - n}$, $y = z^{\frac{1}{1 - n}}$.
+	
+	\[
+		\therefore y = \left[ \frac{1}{\exp\left(\int M(x) dx \right)} (1 - n) \int N(x) \exp\left(\int M(x) dx \right) dx \right] ^ {\frac{1}{1 - n}}
+	\]
 \end{document}
