@@ -652,6 +652,101 @@
 	
 	Therefore, we just found out that the operation $\operatorname{grad}(f) = \nabla f$ is a vector perpendicular to the parameterized path of an arbitrary level curve of $f$, which means that the gradient is pointing at any point to either a relative maximum or a relative minimum. By the nature of derivatives, we know that they are positive when the next value is greater that then current one, which means we can claim that they are actually pointing to a relative maximum.
 	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% 							CHAIN RULE 							%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\section{Chain rule}
+	
+	Let us attempt to derive the following function:
+	
+	\[
+		\frac{d}{dt_\mu}f(x_1(t_1, \cdots, t_\mu, \cdots, t_n), x_2(t_1, \cdots, t_\mu, \cdots, t_n), \cdots, x_m(t_1, \cdots, t_\mu, \cdots, t_n))
+	\]
+	
+	We will use vector notation defining $\vec{v} : \mathbb{R}^n \to \mathbb{R}^m$ like:
+	
+	\[
+		\frac{d}{dt_\mu}f(\vec{v}(t_1, \cdots, t_\mu, \cdots, t_n))
+	\]
+	
+	Now, we will just use the standard derivative's definition.
+	
+	\[
+		\frac{d}{dt_\mu}f(\vec{v}(t_1, \cdots, t_\mu, \cdots, t_n))
+		= \lim_{h \to 0} \frac{f(\vec{v}(t_1, \cdots, t_\mu + h, \cdots, t_n)) - f(\vec{v}(t_1, \cdots, t_\mu, \cdots, t_n))}{h}
+	\]
+	
+	Before going on with this, we will work with the derivative of $\vec{v}$ with respect to the variable $t_\mu$:
+	
+	\[
+		\frac{\partial \vec{v}}{\partial t_\mu}
+		= \lim_{h \to 0} \frac{\vec{v}(t_1, \cdots, t_\mu + h, \cdots, t_n) - \vec{v}(t_1, \cdots, t_\mu, \cdots, t_n)}{h}
+	\]
+	
+	Next, we will add an arbitrary function $E(h)$ whose definition is unknown but we must establish that when $h \to 0$, $E(h) \to 0$ too.
+	
+	\[
+		\frac{\partial \vec{v}}{\partial t_\mu}
+		\approx \frac{\vec{v}(t_1, \cdots, t_\mu + h, \cdots, t_n) - \vec{v}(t_1, \cdots, t_\mu, \cdots, t_n)}{h} + E(h)
+	\]
+	
+	We can solve this equation for the first term in the nominator by subtracting both sides by $E(h)$, multiplying by $h$ and adding the second term of the nominator.
+	
+	\[
+		\vec{v}(t_1, \cdots, t_\mu + h, \cdots, t_n)
+		\approx \vec{v}(t_1, \cdots, t_\mu, \cdots, t_n) + h \frac{\partial \vec{v}}{\partial t_\mu} - hE(h)
+	\]
+	
+	We can simplify a little the expression by using another function $o(h)$, which is a function such that:
+	
+	\[
+		h \to 0, \quad \frac{|o(h)|}{h} \to 0
+	\]
+	
+	$hE(h)$ satisfies that condition, thus we can replace it.
+	
+	\[
+		\vec{v}(t_1, \cdots, t_\mu + h, \cdots, t_n)
+		\approx \vec{v}(t_1, \cdots, t_\mu, \cdots, t_n) + h \frac{\partial \vec{v}}{\partial t_\mu} - o(h)
+	\]
+	
+	We just found another way to write the variables of the function $f$ in the first term of the derivative. Thus:
+	
+	
+	\[
+		\frac{d}{dt_\mu}f(\vec{v}(t_1, \cdots, t_\mu, \cdots, t_n))
+		= \lim_{h \to 0} \frac{f(\vec{v}(t_1, \cdots, t_\mu, \cdots, t_n) + h \partial_{t_\mu} \vec{v} - o(h)) - f(\vec{v}(t_1, \cdots, t_\mu, \cdots, t_n))}{h}
+	\]
+	
+	By reading the result, it is quite noticeable that the result is in fact a directional derivative.
+	
+	\[
+		\frac{d}{dt_\mu}f(\vec{v}(t_1, \cdots, t_\mu, \cdots, t_n))
+		= \langle \nabla f, \partial_{t_\mu} \vec{v} \rangle
+		= \sum_{\nu = 1}^n \frac{\partial f}{\partial x_\nu} \frac{\partial x_\nu}{\partial t_\mu}
+	\]
+	
+	Therefore, a more general way to compute a derivative for a function with $m$ variable whose variables could also be functions of $n$ variables which rely on more values and taking one of them as the variable for the differentiation is:
+	
+	\[
+		\frac{df}{dt_\mu}
+		= \sum_{\nu = 1}^n \frac{\partial f}{\partial x_\nu} \frac{\partial x_\nu}{\partial t_\mu}
+	\]
+	
+	But, in case the variables of the function only relies on a single variable, we can use the typical Leibniz's notation for single-variable functions's derivatives.
+	
+	\[
+		\frac{df}{dt}
+		= \sum_{\nu = 1}^n \frac{\partial f}{\partial x_\nu} \frac{dx_\nu}{dt}
+	\]
+	
+	And here, if we multiply both side by $dt$, we have a more general definition for the differential of a function:
+	
+	\[
+		df = \sum_{\nu = 1}^n \frac{\partial f}{\partial x_\nu} dx_\nu
+	\]
+	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% 							MULTIPLE INTEGRALS 							%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

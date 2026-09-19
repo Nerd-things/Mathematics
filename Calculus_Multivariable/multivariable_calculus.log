@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.10.4)  19 SEP 2026 14:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.10.4)  20 SEP 2026 01:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -205,7 +205,13 @@ Overfull \hbox (31.1999pt too wide) detected at line 328
 \OT1/cmr/m/n/12 = [] [] []
  []
 
-[6] [7] [8] [9] [10] [11] (multivariable_calculus.aux)
+[6] [7] [8] [9] [10] [11]
+Overfull \hbox (31.26408pt too wide) detected at line 720
+[]\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 ([](\OML/cmm/m/it/12 t[]; []  ; t[]; []  ; 
+t[]\OT1/cmr/m/n/12 )) = [] []
+ []
+
+[12] (multivariable_calculus.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -234,9 +240,9 @@ s/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
 <C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cms
 y8.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
 /symbols/msbm10.pfb>
-Output written on multivariable_calculus.pdf (11 pages, 173296 bytes).
+Output written on multivariable_calculus.pdf (12 pages, 178461 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
+ 106 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
