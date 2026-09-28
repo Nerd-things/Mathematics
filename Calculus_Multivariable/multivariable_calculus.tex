@@ -759,4 +759,117 @@
 	%
 	\subsection{Fubini's theorem}
 	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% 							SURFACE INTEGRALS 							%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	%
+	%
+	\section{Surface integrals}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% 							LINE INTEGRALS 							%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	% Author: Álvaro Fernández Barrero
+	% Date: 2026-09-28
+	\section{Line integrals}
+	
+	% Author: Álvaro Fernández Barrero
+	% Date: 2026-09-28
+	\subsection{Line integrals over scalar fields}
+	
+	Let us define a path under the function $\vec{r} : \mathbb{R} \to \mathbb{R}^n$ and state that we want to integrate the given scalar field $f : \mathbb{R}^n \to \mathbb{R}$ over that path. In that case. we can compute the integral:
+	
+	\[
+		\int_C f ds
+	\]
+	
+	The only thing here we do not know about is the differential $ds$, we just know it is a little piece of path, but how to compute it?
+	
+	We can pick a infinitesimal difference in this path in each axis $dx_\mu$ and, thus, we have a $n$-dimensional right triangle. Indeed the path would be the hypotenuse of that triangle generated, and we know already by the Pythagorean theorem that:
+	
+	\[
+		ds^2 = \sum_{\mu = 1}^n dx_\mu^2
+	\]
+	
+	As we are working with distances and, by definition, distance must be positive, we can naturally use the square root here.
+	
+	\[
+		ds = \sqrt{\sum_{\mu = 1}^n dx_\mu^2}
+	\]
+	
+	In order to have something easier to work with, on the right-hand side of the formula we can multiply by 1, thinking of that one like a fraction having in both the nominator and denominator the differential of the path function's variable $t$ like:
+	
+	\[
+		ds = \frac{dt}{dt} \sqrt{\sum_{\mu = 1}^n dx_\mu^2} 
+		= dt \sqrt{\frac{1}{dt^2}\sum_{\mu = 1}^n dx_\mu^2}
+		= dt \sqrt{\sum_{\mu = 1}^n \frac{dx_\mu^2}{dt^2}}
+		= dt \sqrt{\sum_{\mu = 1}^n \left(\frac{dx_\mu}{dt}\right)^2}
+	\]
+	
+	Hence, we can use this new formula for the line integral.
+	
+	\[
+		\int_C f ds
+		= \int_C f \sqrt{\sum_{\mu = 1}^n \left(\frac{dx_\mu}{dt}\right)^2} dt
+	\]
+	
+	%
+	%
+	\subsection{Line integrals over vector fields}
+	
+	%
+	%
+	\subsection{Fundamental theorem of line integrals}
+	
+	Let $F : \mathbb{R}^n \to \mathbb{R}^n$ be a vector field with a potential function $\phi$ and $\vec{r} : \mathbb{R} \to \mathbb{R}^n$ be the path to integrate over such as $a \le t \le b$. Thus:
+	
+	\[
+		\int_C F \cdot d\vec{r}
+		= \int_a^b F(\vec{r}(t)) \cdot d\vec{r}
+		= \int_a^b F(\vec{r}(t)) \cdot \frac{d\vec{r}}{dt}dt
+		= \int_a^b \nabla \phi(\vec{r}(t)) \cdot \frac{d\vec{r}}{dt}dt
+	\]
+	
+	In the last integral, let us compute the dot product:
+	
+	\[
+		\int_a^b \nabla \phi(\vec{r}(t)) \cdot \frac{d\vec{r}}{dt}dt
+		= \int_a^b \sum_{\mu = 1}^n \frac{\partial \phi}{\partial x_\mu}(\vec{r}(t)) \frac{d\vec{r}_\mu}{dt} dt
+	\]
+	
+	Here, we see that we have the same result as the chain rule. In fact, by knowing the chain rule's proof, it was crystal clear already without making this step. Therefore, it can be simplified as:
+	
+	\[
+		= \int_a^b \frac{d\phi}{dt}(\vec{r}(t)) dt
+	\]
+	
+	That last odd formula ended up being just a simple integral with a single variable, which means we can compute it naturally and obtain a pretty neat result.
+	
+	\[
+		= \phi(\vec{r}(t)) \bigg|_{t=a}^{t=b} = \phi(\vec{r}(b)) = \phi(\vec{r}(a))
+	\]
+	
+	Hence.
+	
+	\[
+		\int_C F \cdot d\vec{r}
+		= \phi(\vec{r}(b)) = \phi(\vec{r}(a))
+	\]
+	
+	Where $\nabla \phi = F$.
+	
+	%
+	%
+	\section{Green's theorem}
+	
+	%
+	%
+	\section{Kelvin-Stoke’s theorem}
+	
+	%
+	%
+	\section{Gauß’s/Ostrogradsky’s divergence theorem}
+	
 \end{document}
