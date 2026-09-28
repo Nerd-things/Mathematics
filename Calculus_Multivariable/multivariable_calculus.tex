@@ -779,7 +779,7 @@
 	% Date: 2026-09-28
 	\subsection{Line integrals over scalar fields}
 	
-	Let us define a path under the function $\vec{r} : \mathbb{R} \to \mathbb{R}^n$ and state that we want to integrate the given scalar field $f : \mathbb{R}^n \to \mathbb{R}$ over that path. In that case. we can compute the integral:
+	Let us define a path under the function $\vec{r} : \mathbb{R} \to \mathbb{R}^n$ such as $a \le t \le b$ and state that we want to integrate the given scalar field $f : \mathbb{R}^n \to \mathbb{R}$ over that path. In that case. we can compute the integral:
 	
 	\[
 		\int_C f ds
@@ -808,11 +808,18 @@
 		= dt \sqrt{\sum_{\mu = 1}^n \left(\frac{dx_\mu}{dt}\right)^2}
 	\]
 	
+	We see that the root is in fact the magnitude of a vector and that vector corresponds to the derivative of the path function $\vec{r}$.
+	
+	\[
+		= \left| \frac{d\vec{r}}{dt} \right| dt
+	\]
+	
 	Hence, we can use this new formula for the line integral.
 	
 	\[
 		\int_C f ds
-		= \int_C f \sqrt{\sum_{\mu = 1}^n \left(\frac{dx_\mu}{dt}\right)^2} dt
+		= \int_a^b f(\vec{r}(t)) \left| \frac{d\vec{r}}{dt} \right| dt
+		= \int_a^b f(\vec{r}(t)) \vec{r}' dt
 	\]
 	
 	%
