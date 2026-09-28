@@ -40,7 +40,7 @@
 	\subsection{Separation of variables}
 	
 	% Author: Álvaro Fernández Barrero
-	% Date: 18-09-2026
+	% Date: 2026-09-18
 	\subsection{Homogeneous ODE 1st degree}
 	
 	An homogeneous ODE can be expressed like:
@@ -89,7 +89,7 @@
 	\]
 	
 	% Author: Álvaro Fernández Barrero
-	% Date: 18-09-2026
+	% Date: 2026-09-18
 	\subsection{Non-homogeneous ODE 1st degree}
 	
 	A non-homogeneous ODE of 1st degree looks like:
@@ -166,8 +166,8 @@
 		y = \frac{\int N(x) \exp\left( \int M(x) dx \right) dx}{\exp\left(\int M(x) dx\right)}
 	\]
 	
-	%
-	%
+	% Author Álvaro Fernández Barrero
+	% Date 2026-09-18
 	\subsection{Bernoulli's ODE}
 	
 	Bernoulli's ODE are non-linear ODE which have the following form:
@@ -233,5 +233,82 @@
 	
 	\[
 		\therefore y = \left[ \frac{1}{\exp\left(\int M(x) dx \right)} (1 - n) \int N(x) \exp\left(\int M(x) dx \right) dx \right] ^ {\frac{1}{1 - n}}
+	\]
+	
+	% Author Álvaro Fernández Barrero
+	% Date 2026-09-28
+	\section{Laplace's transform}
+	
+	The Laplace's transform $\mathcal{L}$ over a function $f : \mathbb{R} \to \mathbb{R}$ is defined as:
+	
+	\[
+		\mathcal{L}\{f(t)\} := \int_{0}^\infty f(t) e^{-st} dt
+	\]
+	
+	This operator is super useful in differential equations because it converts an ordinary differential equation into an algebraic equation and a partial differential equation to an ordinary differential equation.
+	
+	% Author Álvaro Fernández Barrero
+	% Date 2026-09-28
+	\subsection{Laplace's transform over ordinary derivatives}
+	
+	Let $f : \mathbb{R} \to \mathbb{R}$ be a continuous function in the interval $[a, b]$ and differentiable in the interval $(a, b)$. Thus:
+	
+	\[
+		\mathcal{L}\{f^{(n)}(t)\} = \int_0^\infty f^{(n)}(t) e^{-st}dt
+	\]
+	
+	Now, we can use the method of integration by parts as we have a multiplication and one of the terms is an exponential.
+	
+	\[
+		\begin{aligned}
+			& = f^{(n - 1)}(t)e^{-st} \bigg|_{t = 0}^{t = \infty} - \int_0^\infty -se^{-st}f^{(n - 1)}(t)dt
+			= f^{(n)}(t)e^{-st} \bigg|_{t = 0}^{t = \infty} + \int_0^\infty se^{-st}f^{(n - 1)}(t)dt
+			\\
+			& = f^{(n - 1)}(0) + s\int_0^\infty e^{-st}f^{(n - 1)}(t)dt
+			= f^{(n - 1)}(0) + s \mathcal{L}\{f^{(n - 1)}(t)\}
+		\end{aligned}
+	\]
+	
+	Therefore:
+	
+	\[
+		\mathcal{L}\{f^{(n)}(t)\} = -f^{(n)}(0) + s \mathcal{L}\{f^{(n - 1)}(t)\}
+	\]
+	
+	Nonetheless, this result is recursive, because if $n \ge 2$, we have now again the Laplace's transform of a derivative again. Hence, we can apply over and over the formula
+	
+	\[
+		\begin{aligned}
+			\mathcal{L}\{f^{(n)}(t)\}
+			& = -f^{(n - 1)}(0) + s \mathcal{L}\{f^{(n - 1)}(t)\} \\
+			& = -f^{(n - 1)}(0) - s f^{(n - 2)}(0) + s^2\mathcal{L}\{f^{(n - 2)}(t)\} \\
+			& = -f^{(n - 1)}(0) - s f^{(n - 2)}(0) - s^2 f^{(n - 3)}(0) + s^3\mathcal{L}\{f^{(n - 3)}(t)\} \\
+			& = -f^{(n - 1)}(0) - s f^{(n - 2)}(0) - s^2 f^{(n - 3)}(0) - s^3 f^{(n - 4)}(0) + s^4\mathcal{L}\{f^{(n - 4)}(t)\} \\
+			& = -f^{(n - 1)}(0) - s f^{(n - 2)}(0) - s^2 f^{(n - 3)}(0) - s^3 f^{(n - 4)}(0) - s^4 f^{(n - 5)}(0) + s^5\mathcal{L}\{f^{(n - 5)}(t)\} \\
+			& \hspace{0.5em} \vdots
+		\end{aligned}
+	\]
+	\[
+		\therefore \mathcal{L}\{f^{(n)}(t)\}
+		= s^n \mathcal{L}\{f(t)\} - \sum_{\mu = 0}^{n - 1} s^n f^{(n - \mu - 1)}(0)
+	\]
+	
+	We see how the Laplace's transform took away all the ordinary derivatives it contained, gaining a lot of potential when working with differential equations.
+	
+	% Author Álvaro Fernández Barrero
+	% Date 2026-09-28
+	\subsection{Linearity}
+	
+	Let $f_\mu : \mathbb{R} \to \mathbb{R}$ and $\sigma_\mu \in \mathbb{F}$:
+	
+	\[
+		\begin{aligned}
+			& \mathcal{L} \left\{ \sum_{\mu = 0}^n \sigma_\mu f_\mu(t) \right\}
+			= \int_0^\infty \sum_{\mu = 0}^n \sigma_\mu f_\mu(t) e^{-st} dt
+			= \sum_{\mu = 0}^n \int_0^\infty \sigma_\mu f_\mu(t) e^{-st} dt
+			= \sum_{\mu = 0}^n \sigma_\mu \int_0^\infty f_\mu(t) e^{-st} dt
+			\\
+			& = \sum_{\mu = 0}^n \sigma_\mu \mathcal{L}\{f_\mu(t)\}
+		\end{aligned}	
 	\]
 \end{document}
